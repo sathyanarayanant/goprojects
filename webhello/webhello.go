@@ -12,5 +12,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/", handler)
-	http.ListenAndServe(":8080", nil)
+	port := ":8080"
+	fmt.Println("Listening in port ", port)
+	http.ListenAndServe(port, nil)
 }
