@@ -18,8 +18,9 @@ func getCtx() context.Context {
 	// different authorization flows you can use.
 	// http://godoc.org/golang.org/x/oauth2/google
 	opts, err := oauth2.New(
-		google.ServiceAccountJSONKey("CassandraTest-key.json"),
-		oauth2.Scope(datastore.ScopeDatastore),
+		//google.ServiceAccountJSONKey("CassandraTest-key.json"),
+		google.ServiceAccountJSONKey("CassandraTest-804d05ba010f.json"),
+		oauth2.Scope(datastore.ScopeDatastore, datastore.ScopeUserEmail),
 	)
 	if err != nil {
 		log.Fatal(err)
