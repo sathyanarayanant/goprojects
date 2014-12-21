@@ -52,8 +52,18 @@ func main() {
 	if err != nil {
 		fmt.Println("Error:", err)
 	} else {
+		fmt.Println("datastore put success. Time elapsed:", t1.Sub(t0))
+	}
 
-		fmt.Println("datastore write success. Time elapsed:", t1.Sub(t0))
+	t0 = time.Now()
+	err = putManyEntities(ctx)
+
+	t1 = time.Now()
+
+	if err != nil {
+		fmt.Println("Error:", err)
+	} else {
+		fmt.Println("datastore put multi success. Time elapsed:", t1.Sub(t0))
 	}
 }
 
@@ -67,6 +77,40 @@ func putEntity(ctx context.Context, firstName string, lastName string, email str
 	}
 
 	_, err := datastore.Put(ctx, key, &contactInfoEntity)
+
+	return err
+}
+
+func putManyEntities(ctx context.Context) error {
+	const numEntities = 10
+
+	keys := []*datastore.Key{
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya1@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya2@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya3@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya4@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya5@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya6@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya7@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya8@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya9@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya10@gmail.com", 0, nil),
+	}
+
+	entities := []*contactInfoEntity{
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+	}
+
+	_, err := datastore.PutMulti(ctx, keys, entities)
 
 	return err
 }
