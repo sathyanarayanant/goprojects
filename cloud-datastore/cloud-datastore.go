@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 
 	"golang.org/x/net/context"
 	"golang.org/x/oauth2"
@@ -18,8 +19,8 @@ func getCtx() context.Context {
 	// different authorization flows you can use.
 	// http://godoc.org/golang.org/x/oauth2/google
 	opts, err := oauth2.New(
-		//google.ServiceAccountJSONKey("CassandraTest-key.json"),
-		google.ServiceAccountJSONKey("CassandraTest-804d05ba010f.json"),
+		google.ServiceAccountJSONKey("CassandraTest-key.json"),
+		//google.ServiceAccountJSONKey("CassandraTest-804d05ba010f.json"),
 		oauth2.Scope(datastore.ScopeDatastore, datastore.ScopeUserEmail),
 	)
 	if err != nil {
@@ -44,12 +45,15 @@ func main() {
 	ctx := getCtx()
 	fmt.Println("successfully got context", ctx)
 
+	t0 := time.Now()
 	err := putEntity(ctx, "sowmya", "ramakrishnan", "sowmya.ram@gmail.com")
+	t1 := time.Now()
 
 	if err != nil {
 		fmt.Println("Error:", err)
 	} else {
-		fmt.Println("success")
+
+		fmt.Println("datastore write success. Time elapsed:", t1.Sub(t0))
 	}
 }
 
