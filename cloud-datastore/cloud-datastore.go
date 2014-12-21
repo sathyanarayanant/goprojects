@@ -55,16 +55,12 @@ func main() {
 		fmt.Println("datastore put success. Time elapsed:", t1.Sub(t0))
 	}
 
-	t0 = time.Now()
-	err = putManyEntities(ctx)
-
-	t1 = time.Now()
-
-	if err != nil {
-		fmt.Println("Error:", err)
-	} else {
-		fmt.Println("datastore put multi success. Time elapsed:", t1.Sub(t0))
-	}
+	putManyEntities(ctx)
+	putManyEntities(ctx)
+	putManyEntities(ctx)
+	putManyEntities(ctx)
+	putManyEntities(ctx)
+	putManyEntities(ctx)
 }
 
 func putEntity(ctx context.Context, firstName string, lastName string, email string) error {
@@ -81,8 +77,8 @@ func putEntity(ctx context.Context, firstName string, lastName string, email str
 	return err
 }
 
-func putManyEntities(ctx context.Context) error {
-	const numEntities = 10
+func putManyEntities(ctx context.Context) {
+	t0 := time.Now()
 
 	keys := []*datastore.Key{
 		datastore.NewKey(ctx, "contactInfoEntity", "sowmya1@gmail.com", 0, nil),
@@ -95,9 +91,97 @@ func putManyEntities(ctx context.Context) error {
 		datastore.NewKey(ctx, "contactInfoEntity", "sowmya8@gmail.com", 0, nil),
 		datastore.NewKey(ctx, "contactInfoEntity", "sowmya9@gmail.com", 0, nil),
 		datastore.NewKey(ctx, "contactInfoEntity", "sowmya10@gmail.com", 0, nil),
+
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya11@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya12@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya13@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya14@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya15@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya16@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya17@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya18@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya19@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya20@gmail.com", 0, nil),
+
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya21@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya22@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya23@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya24@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya25@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya26@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya27@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya28@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya29@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya30@gmail.com", 0, nil),
+
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya31@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya32@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya33@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya34@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya35@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya36@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya37@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya38@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya39@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya40@gmail.com", 0, nil),
+
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya41@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya42@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya43@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya44@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya45@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya46@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya47@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya48@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya49@gmail.com", 0, nil),
+		datastore.NewKey(ctx, "contactInfoEntity", "sowmya50@gmail.com", 0, nil),
 	}
 
 	entities := []*contactInfoEntity{
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+		{FirstName: "sowmya", LastName: "ram"},
+
 		{FirstName: "sowmya", LastName: "ram"},
 		{FirstName: "sowmya", LastName: "ram"},
 		{FirstName: "sowmya", LastName: "ram"},
@@ -112,5 +196,12 @@ func putManyEntities(ctx context.Context) error {
 
 	_, err := datastore.PutMulti(ctx, keys, entities)
 
-	return err
+	if err == nil {
+		t1 := time.Now()
+		fmt.Println("put multi completed in:", t1.Sub(t0))
+	} else {
+		log.Fatal("put multi failed: ", err)
+	}
+
+	return
 }
