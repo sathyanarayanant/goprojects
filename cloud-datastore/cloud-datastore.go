@@ -62,6 +62,12 @@ func main() {
 
 	getEntity(ctx)
 	getEntity(ctx)
+	getEntity(ctx)
+	getEntity(ctx)
+	getEntity(ctx)
+	getEntity(ctx)
+	getEntity(ctx)
+	getEntity(ctx)
 }
 
 func getEntity(ctx context.Context) {
