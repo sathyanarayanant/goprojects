@@ -1,9 +1,12 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"log"
+	"math/rand"
 	"net/http"
+	"strconv"
 	"time"
 
 	"golang.org/x/net/context"
@@ -18,11 +21,12 @@ func getCtx() context.Context {
 	// JSON key. Read the google package examples to learn more about
 	// different authorization flows you can use.
 	// http://godoc.org/golang.org/x/oauth2/google
+
 	opts, err := oauth2.New(
 		google.ServiceAccountJSONKey("CassandraTest-key.json"),
-		//google.ServiceAccountJSONKey("CassandraTest-804d05ba010f.json"),
 		oauth2.Scope(datastore.ScopeDatastore, datastore.ScopeUserEmail),
 	)
+
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -55,6 +59,10 @@ func main() {
 		fmt.Println("datastore put success. Time elapsed:", t1.Sub(t0))
 	}
 
+	putEntity2(ctx)
+	putEntity2(ctx)
+	putEntity2(ctx)
+
 	putManyEntities(ctx)
 	putManyEntities(ctx)
 	putManyEntities(ctx)
@@ -75,6 +83,42 @@ func putEntity(ctx context.Context, firstName string, lastName string, email str
 	_, err := datastore.Put(ctx, key, &contactInfoEntity)
 
 	return err
+}
+
+func putEntity2(ctx context.Context) {
+
+	email := getRandomEmail()
+
+	key := datastore.NewKey(ctx, "contactInfoEntity", email, 0, nil)
+
+	contactInfoEntity := contactInfoEntity{
+		FirstName: "fname",
+		LastName:  "lname",
+	}
+
+	t0 := time.Now()
+	_, err := datastore.Put(ctx, key, &contactInfoEntity)
+	t1 := time.Now()
+
+	if err == nil {
+		fmt.Println("datastore put completed in: ", t1.Sub(t0))
+	} else {
+		log.Fatal("cannot put entity in datastore", err)
+	}
+}
+
+func getRandomEmail() string {
+	var buffer bytes.Buffer
+
+	random := rand.Int()
+	buffer.WriteString("email")
+	buffer.WriteString(strconv.Itoa(random))
+
+	return buffer.String()
+}
+
+func get(ctx *context.Context) {
+
 }
 
 func putManyEntities(ctx context.Context) {
