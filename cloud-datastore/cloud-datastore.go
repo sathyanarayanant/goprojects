@@ -49,16 +49,6 @@ func main() {
 	ctx := getCtx()
 	fmt.Println("successfully got context", ctx)
 
-	t0 := time.Now()
-	err := putEntity(ctx, "sowmya", "ramakrishnan", "sowmya.ram@gmail.com")
-	t1 := time.Now()
-
-	if err != nil {
-		fmt.Println("Error:", err)
-	} else {
-		fmt.Println("datastore put success. Time elapsed:", t1.Sub(t0))
-	}
-
 	putEntity2(ctx)
 	putEntity2(ctx)
 	putEntity2(ctx)
@@ -69,20 +59,26 @@ func main() {
 	putManyEntities(ctx)
 	putManyEntities(ctx)
 	putManyEntities(ctx)
+
+	getEntity(ctx)
+	getEntity(ctx)
 }
 
-func putEntity(ctx context.Context, firstName string, lastName string, email string) error {
+func getEntity(ctx context.Context) {
+	email := getRandomEmail()
+
 	key := datastore.NewKey(ctx, "contactInfoEntity", email, 0, nil)
 
-	contactInfoEntity := contactInfoEntity{
-		EmailKey:  key,
-		FirstName: firstName,
-		LastName:  lastName,
+	var entity contactInfoEntity
+	t0 := time.Now()
+	err := datastore.Get(ctx, key, &entity)
+	t1 := time.Now()
+
+	if err == nil {
+		fmt.Println("datastore get completed in: ", t1.Sub(t0))
+	} else {
+		log.Fatal("cannot get entity from datastore")
 	}
-
-	_, err := datastore.Put(ctx, key, &contactInfoEntity)
-
-	return err
 }
 
 func putEntity2(ctx context.Context) {
